@@ -26,27 +26,27 @@ class Words {
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(words: [String]) -> Bool {
+    static func arePalindromes(words: [String]) -> Bool {
         let reversedWords = words.map() {String($0.characters.reverse())}
         var numElements = words.count
-        
-        for let i = 0; i < numElements; i++ {
+        for var i = 0; i < numElements; i++ {
             if words[i] != reversedWords[i] {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: Because let variables are immutable. The function has to be static because the code at the bottom is using the function without intantiating a variable. The case where the words are palindromes was missing, so I added a return true at the end of the function.
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
+     func isAnagram() -> Bool {
+        var countLetters : [Character : Int] = [Character : Int]()//Line X
         var lenA = self.wordA.characters.count
         var lenB = self.wordB.characters.count
         
@@ -81,7 +81,7 @@ class Words {
             }
         }
         
-        return nil
+        return true
     }
 //: ### What is the problem with declaring **countLetters** as we do in **Line X**,
 //: ### and then using it in **Line Y**? Fix it (by only changing **Line X**).
@@ -89,8 +89,7 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
-    
+//: It was not instantiated, so the reference to the map was pointing to something nil. The function is not a class, so I removed the class tag. And the case where the words are anagrams was missing, so I added a return true at the end of the function.
     
 }
 
